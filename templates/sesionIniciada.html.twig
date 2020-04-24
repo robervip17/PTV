@@ -1,0 +1,20 @@
+{% extends "main/layout.html.twig" %}
+{% block archivospropios %}
+{% block title %}Sesion iniciada{% endblock %}
+	<link rel="stylesheet" href="./css/estilosInicioSesion.css">
+	<script src="./js/"></script>
+{% endblock %}
+{% block contenido %}
+	<div class="content-wrap">
+		<section id="login" class="clearfix">
+			<div class="col-6 justify-content-center offset-3" id="cardG">
+				<div class="card card-4">
+					<p class="intro">Bienvenido, {{ app.session.get('username') }} has iniciado sesion!
+					</p>
+                    <input type="reset" value="Logout" class="button" onclick="window.location='logout'">
+
+				</div>
+			</section>
+		</div>
+
+{% endblock %}

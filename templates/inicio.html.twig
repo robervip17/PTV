@@ -1,0 +1,73 @@
+{% extends "main/layout.html.twig" %}
+{% block archivospropios %}
+{% block title %}Inicio{% endblock %}
+	<link rel="stylesheet" href="./css/estilosInicio.css">
+	<script src="./js/scriptInicio.js"></script>
+{% endblock %}
+{% block contenido %}
+<!-- Frase inicial -->
+	<section class="container-fluid">
+		<article>
+			<div class="row">
+				<p class="col-12 text-center" id="fraseAle">
+					<b>"Desde 1988 trabajando por y para los conductores."</b>
+				</p>
+			</div>
+		</article>
+	</section>
+	<hr>
+	<!-- Mapa (donde estamos?) -->
+	<section class="container-fluid bg-dark">
+		<article>
+			<div class="row">
+				<h4 style="color: white;" class="col-12 text-center">¿Dónde estamos?</h4>
+			</div>
+			<div class="google-maps">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3081.6098190529274!2d-0.4755941846337438!3d39.432946779491516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6051b9f00e99ef%3A0x9f30856efbe0016d!2sTalleres%20Vi%C3%B1es%20SL!5e0!3m2!1ses!2ses!4v1586455040471!5m2!1ses!2ses" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+			</div>
+		</article>
+	</section>
+	<hr>
+	<!-- Informacion contacto inicio -->
+	<section class="container-fluid">
+		<article>
+			<h4 style="color: #292b2c;" class="col-12 text-center">
+				<b>Infomación de contacto</b>
+			</h4>
+			<div id="info" class="card text-center border-white">
+				<div class="card-body">
+					<p class="card-text">
+						<b>Telf.</b>
+						961575932</p>
+					<p class="card-text">
+						<b>E-mail</b>
+						talleresvinyes@gmail.com</p>
+					<p class="card-text">
+						<b>Direccion.</b>
+						C/ Germanies 70 bajo</p>
+					<a id="boton1" href="#popup1" class="btn btn-success text-white">Contacta con Nosotros</a>
+				</div>
+			</div>
+			<!-- PopUp formulario contacto -->
+			<div id="popup1" class="overlay" style="z-index: 900;">
+				<div id="popupBody">
+					<h2>Formulario de contacto</h2>
+					<a id="cerrar" href="#info">&times;</a>
+					<div style="width:100%;height:400px;overflow:auto;" class="popupContent">
+						<form>
+							<div class="form-group">
+								<label for="exampleFormControlInput1">Tu Email</label>
+								<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="usuario@ejemplo.com">
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlTextarea1">Escribe que sucede:</label>
+								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+							</div>
+							<a id="botonForm" class="btn btn-success text-white text-center">Enviar</a><p id="mensajeGracias"></p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</article>
+	</section>
+{% endblock %}
