@@ -46,7 +46,7 @@ class User implements UserInterface
     private $nombreCompleto;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\coches")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Coches")
      */
     private $coches;
 

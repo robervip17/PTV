@@ -34,7 +34,7 @@ class Coches
     private $observaciones;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\reparaciones", mappedBy="coche")
+     * @ORM\OneToMany(targetEntity="App\Entity\Reparaciones", mappedBy="coche")
      */
     private $matricula;
 

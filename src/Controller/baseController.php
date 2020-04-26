@@ -7,8 +7,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
-use App\Entity\User;
-use App\Form\EnvioRegistroType;
+use App\Entity\{User, Sesion};
+use App\Form\{EnvioRegistroType, EnvioInicioSesionType};
+
 
 class baseController extends AbstractController
 {
@@ -51,12 +52,31 @@ class baseController extends AbstractController
     /**
      * @Route("/inicioSesion", name="login")
      */
-    public function login(SessionInterface $session){
-        $login = $session->get('username');
-        var_dump($login);
+    public function login(Request $request, SessionInterface $session){
+        $login = $request->request->get('user');
+        $contactoTo=new User();
+        $form=$this->CreateForm(EnvioInicioSesionType::Class, $contactoTo);
+        $form->handleRequest($request);
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        if($form->isSubmitted() && $form->isValid()){
+            $usuario = $form->getData();
+            $email = $usuario->getEmail();
+            $password = $usuario->getPassword();
+            var_dump($password);
+            $buscarUsuario = $repository->findBy(
+                array('email' => $email, 'password' => $password)
+            );
+            if (!$buscarUsuario) {
+                echo 'No esta bro.';
+            }
+            else {
+                echo 'Si que estaaaaa!';
+            }
+        }
         if ($login == "") {
          return $this->render('inicioSesion.html.twig', [
-             'login' => $login
+             'login' => $login,
+             'form' => $form->CreateView()
         ]);
      }
      else {
