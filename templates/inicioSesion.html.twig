@@ -11,10 +11,12 @@
 			<div class="col-6 justify-content-center offset-3" id="cardG">
 				<div class="card card-4">
 					{{form_start(form, {'attr':{'class':"col-8 offset-2", "action":""}})}}
-					<label for="email">Tu correo electrónico *</label><br>
-					{{form_widget(form.email, {'attr':{'class':'form-control', 'placeholder':'Email', 'id':'email', 'required':''}})}}
+					<label for="dni">Tu DNI *</label><br>
+					{{form_widget(form.dni, {'attr':{'class':'form-control', 'placeholder':'dni', 'id':'dni', 'required':''}})}}
+					<p style="color:#d9534f;" id="errorEmail"></p>
 					<label for="password">Tu Contraseña *</label>
 					{{ form_widget(form.password, {'attr':{'class':'form-select', 'placeholder':'Contraseña', 'id':'password', 'required':''}}) }}
+					<p style="color:#d9534f;" id="errorPassword"></p>
 					{{form_widget(form.send, {'attr':{'class':'btn bot', 'placeholder':'Enviar',  'type':'submit', 'onclick':'comprobar()'}})}}
 					{# </form> #}
 					{{form_end(form)}}

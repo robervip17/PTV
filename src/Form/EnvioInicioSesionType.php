@@ -6,14 +6,14 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\{EmailType, PasswordType, SubmitType};
+use Symfony\Component\Form\Extension\Core\Type\{TextType, PasswordType, SubmitType};
 
 class EnvioInicioSesionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('email', EmailType::class)
+          ->add('dni', TextType::class)
           ->add('password', PasswordType::class)
           ->add('send', SubmitType::class)
         ;

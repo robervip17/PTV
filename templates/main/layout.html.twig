@@ -12,15 +12,15 @@
 		<a class="nav-link" href="/servicios">
 			<button class="btn btn-outline-secundary text-white" type="button">Servicios</button>
 		</a>
-		{% if app.session.get('username') == "" %}
+		{% if app.session.get('nombre') == "" %}
 			<a class="nav-link" href="/registro">
 				<button class="btn btn-outline-secundary text-white" type="button">Hazte miembro</button>
 			</a>
 		{% endif %}
-		{% if app.session.get('username') != "" %}
+		{% if app.session.get('nombre') != "" %}
 			<a class="nav-link" href="/pagCuenta">
 				<button class="btn btn-outline-secundary text-white" type="button">Hola,
-					{{ app.session.get('username') }}</button>
+					{{ app.session.get('nombre') }}</button>
 			</a>
 		{% endif %}
 	</nav>

@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\{User, Sesion};
 use App\Form\{EnvioRegistroType, EnvioInicioSesionType};
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\DBAL\Connection;
 
 
 class baseController extends AbstractController
@@ -36,9 +39,12 @@ class baseController extends AbstractController
      * @Route("/registro")
      */
     public function registro(Request $request, SessionInterface $session){
+        $login = $this->get('session')->get('nombre');
+        if ($login == "") {
         $contactoTo=new User();
         $form=$this->CreateForm(EnvioRegistroType::Class, $contactoTo);
         $form->handleRequest($request);
+        var_dump($contactoTo);
         if($form->isSubmitted() && $form->isValid()){
             $entityManager=$this->getDoctrine()->getManager();
             $entityManager->persist($contactoTo);
@@ -46,61 +52,71 @@ class baseController extends AbstractController
         return $this->render('registro.html.twig', [
             'form' => $form->CreateView()
         ]);
+        }
+        else {
+            return $this->redirectToRoute('cuenta');
+        }
     }
-
 
     /**
      * @Route("/inicioSesion", name="login")
      */
     public function login(Request $request, SessionInterface $session){
-        $login = $request->request->get('user');
+        $login = $this->get('session')->get('nombre');
+        if ($login == "") {
         $contactoTo=new User();
         $form=$this->CreateForm(EnvioInicioSesionType::Class, $contactoTo);
         $form->handleRequest($request);
         $repository = $this->getDoctrine()->getRepository(User::class);
         if($form->isSubmitted() && $form->isValid()){
             $usuario = $form->getData();
-            $email = $usuario->getEmail();
+            $dni = $usuario->getDNI();
             $password = $usuario->getPassword();
+            
             var_dump($password);
             $buscarUsuario = $repository->findBy(
-                array('email' => $email, 'password' => $password)
+                array('DNI' => $dni, 'password' => $password)
             );
             if (!$buscarUsuario) {
                 echo 'No esta bro.';
             }
             else {
                 echo 'Si que estaaaaa!';
+                $em = $this->getDoctrine()->getManager();
+
+                $RAW_QUERY = "SELECT * FROM User where User.dni = '".$dni."';";
+        
+                $statement = $em->getConnection()->prepare($RAW_QUERY);
+                $statement->execute();
+
+                $result = $statement->fetchAll();
+                foreach($result as $index => $value){
+                    $nombre = $value['nombre_completo'];
+                }
+                var_dump($result);
+                $session = $request->getSession();
+                $session->start();
+                $session->set('nombre', $nombre);
+                return $this->redirectToRoute('cuenta');
             }
         }
-        if ($login == "") {
          return $this->render('inicioSesion.html.twig', [
-             'login' => $login,
              'form' => $form->CreateView()
         ]);
-     }
-     else {
-         return $this->redirectToRoute('cuenta');
-     }
     }
-
-    /**
-     * @Route("/loggedin", name="logging")
-     */
-    public function logging(Request $request, SessionInterface $session)
-    {
-        $session = $request->getSession();
-        $session->start();
-        $session->set('username', $request->request->get('user'));
+    else {
         return $this->redirectToRoute('cuenta');
     }
+
+}
 
     /**
      * @Route("/pagCuenta", name="cuenta")
      */
     public function cuenta(Request $request, SessionInterface $session)
     {
-        $login = $request->request->get('user');
+        $login = $this->get('session')->get('nombre');
+        var_dump($login);
         return $this->render('sesionIniciada.html.twig', [
             'login' => $login
         ]);
@@ -111,7 +127,7 @@ class baseController extends AbstractController
      */
     public function logout(SessionInterface $session)
     {
-        $session->remove('username');
+        $session->remove('nombre');
         return $this->redirectToRoute('login');
     }
 }
