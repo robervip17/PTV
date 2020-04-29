@@ -12,6 +12,7 @@ use App\Form\{EnvioRegistroType, EnvioInicioSesionType};
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\DBAL\Connection;
+use App\Repository\UserRepository;
 
 
 class baseController extends AbstractController
@@ -26,6 +27,15 @@ class baseController extends AbstractController
        ]);
     }
 
+    /**
+     * @Route("/indexAdmin", name="indexAdmin")
+     */
+    public function inicioAdmin(SessionInterface $session, Request $request, UserRepository $userRepository){
+        return $this->render('user/index.html.twig', [
+            'users' => $userRepository->findAll()
+        ]);
+    }
+    
     /**
      * @Route("/servicios")
      */
@@ -44,7 +54,7 @@ class baseController extends AbstractController
         $contactoTo=new User();
         $form=$this->CreateForm(EnvioRegistroType::Class, $contactoTo);
         $form->handleRequest($request);
-        var_dump($contactoTo);
+
         if($form->isSubmitted() && $form->isValid()){
             $entityManager=$this->getDoctrine()->getManager();
             $entityManager->persist($contactoTo);
@@ -68,17 +78,20 @@ class baseController extends AbstractController
         $form=$this->CreateForm(EnvioInicioSesionType::Class, $contactoTo);
         $form->handleRequest($request);
         $repository = $this->getDoctrine()->getRepository(User::class);
+        $malOBien = false;
         if($form->isSubmitted() && $form->isValid()){
             $usuario = $form->getData();
             $dni = $usuario->getDNI();
             $password = $usuario->getPassword();
             
-            var_dump($password);
+            
             $buscarUsuario = $repository->findBy(
                 array('DNI' => $dni, 'password' => $password)
             );
+
             if (!$buscarUsuario) {
-                echo 'No esta bro.';
+                echo 'Este usuario no esta registrado o los datos introducidos no son correctos.';
+                $malOBien = true;
             }
             else {
                 echo 'Si que estaaaaa!';
@@ -93,7 +106,7 @@ class baseController extends AbstractController
                 foreach($result as $index => $value){
                     $nombre = $value['nombre_completo'];
                 }
-                var_dump($result);
+
                 $session = $request->getSession();
                 $session->start();
                 $session->set('nombre', $nombre);
@@ -101,7 +114,8 @@ class baseController extends AbstractController
             }
         }
          return $this->render('inicioSesion.html.twig', [
-             'form' => $form->CreateView()
+             'form' => $form->CreateView(),
+             'malobien' => $malOBien
         ]);
     }
     else {
@@ -116,7 +130,6 @@ class baseController extends AbstractController
     public function cuenta(Request $request, SessionInterface $session)
     {
         $login = $this->get('session')->get('nombre');
-        var_dump($login);
         return $this->render('sesionIniciada.html.twig', [
             'login' => $login
         ]);

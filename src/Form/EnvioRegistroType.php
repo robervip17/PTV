@@ -15,7 +15,9 @@ class EnvioRegistroType extends AbstractType
         $builder
           ->add('nombreCompleto', TextType::class)
           ->add('email', EmailType::class)
-          ->add('dni', TextType::class)
+          ->add('dni', TextType::class, [
+            'help' => '12345678A',
+        ])
           ->add('password', PasswordType::class)
           ->add('send', SubmitType::class)
         ;
