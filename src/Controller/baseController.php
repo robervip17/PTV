@@ -31,9 +31,15 @@ class baseController extends AbstractController
      * @Route("/indexAdmin", name="indexAdmin")
      */
     public function inicioAdmin(SessionInterface $session, Request $request, UserRepository $userRepository){
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll()
-        ]);
+        $login = $this->get('session')->get('nombre');
+        if ($login == "") {
+            return $this->redirectToRoute('login');
+        }
+        else {
+            return $this->render('dashboard/indexPrinc.html.twig', [
+                'users' => $userRepository->findAll()
+            ]);
+        }
     }
     
     /**

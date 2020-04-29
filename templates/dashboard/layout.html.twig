@@ -1,0 +1,31 @@
+{% extends "dashboard/base.html.twig" %}
+
+{% block body %}
+	<nav class="menu" tabindex="0">
+		<div class="smartphone-menu-trigger"></div>
+		<header class="avatar">
+			<img src="https://img2.freepng.es/20180721/tjc/kisspng-user-silhouette-simplicity-vector-5b52f75ce256e3.9791746015321639329271.jpg"/>
+		</br>
+	</br>
+	Bienvenido,
+	<h4>
+		{{ app.session.get('nombre') }}
+	</h4>
+</header>
+<ul>
+	<a href="{{ path('user_index')}}">
+		<li tabindex="0" class="icon-users">
+			<span>Clientes</span>
+		</li>
+	</a>
+    <a href="{{ path('coches_index')}}">
+	<li tabindex="0" class="icon-dashboard">
+		<span>Coches</span>
+	</li>
+	<a href="{{ path('reparaciones_index')}}">
+	<li tabindex="0" class="icon-settings">
+		<span>Reparaciones</span>
+	</li>
+	</a>
+</ul></nav><main>
+{% block contenido %}{% endblock %}</main>{% endblock %}

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<title>New Reparaciones</title>
+
+{% block body %}
+    <h1>Create new Reparaciones</h1>
+
+    {{ include('reparaciones/_form.html.twig') }}
+
+    <a href="{{ path('reparaciones_index') }}">back to list</a>
+{% endblock %}
