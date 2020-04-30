@@ -20,11 +20,19 @@ class CochesController extends AbstractController
      */
     public function index(CochesRepository $cochesRepository): Response
     {
-        return $this->render('coches/index.html.twig', [
-            'coches' => $cochesRepository->findAll(),
-        ]);
+        $dni = $this->get('session')->get('dni');
+            if ($dni == "admin") {
+                return $this->render('coches/index.html.twig', [
+                    'coches' => $cochesRepository->findAll()
+                ]);
+            }
+            else{
+                return $this->render('coches/index.html.twig', [
+                    'coches' => $cochesRepository->findBy(
+                        array('DNI' => $dni)
+                )]);
     }
-
+}
     /**
      * @Route("/new", name="coches_new", methods={"GET","POST"})
      */

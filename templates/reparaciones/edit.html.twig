@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-
-<title>Edit Reparaciones</title>
-
-{% block body %}
+{% extends "dashboard/layout.html.twig" %}
+{% block contenido %}
     <h1>Edit Reparaciones</h1>
 
     {{ include('reparaciones/_form.html.twig', {'button_label': 'Update'}) }}

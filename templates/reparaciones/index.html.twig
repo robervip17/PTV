@@ -9,7 +9,9 @@
                 <th>TipoReparacion</th>
                 <th>Realizacion</th>
                 <th>Observaciones</th>
+                {% if app.session.get('dni') == "admin" %}
                 <th>actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -19,10 +21,12 @@
                 <td>{{ reparacione.tipoReparacion }}</td>
                 <td>{{ reparacione.realizacion }}</td>
                 <td>{{ reparacione.observaciones }}</td>
+                {% if app.session.get('dni') == "admin" %}
                 <td>
                     <a href="{{ path('reparaciones_show', {'id': reparacione.id}) }}">show</a>
                     <a href="{{ path('reparaciones_edit', {'id': reparacione.id}) }}">edit</a>
                 </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
@@ -31,6 +35,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {% if app.session.get('dni') == "admin" %}
     <a href="{{ path('reparaciones_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

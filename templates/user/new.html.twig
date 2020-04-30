@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-
-<title>New User</title>
-
-{% block body %}
+{% extends "dashboard/layout.html.twig" %}
+{% block contenido %}
     <h1>Create new User</h1>
 
     {{ include('user/_form.html.twig') }}

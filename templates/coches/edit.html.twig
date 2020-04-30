@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-
-<title>Edit Coches</title>
-
-{% block body %}
+{% extends "dashboard/layout.html.twig" %}
+{% block contenido %}
     <h1>Edit Coches</h1>
 
     {{ include('coches/_form.html.twig', {'button_label': 'Update'}) }}

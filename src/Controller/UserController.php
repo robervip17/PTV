@@ -22,9 +22,18 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-        ]);
+        $dni = $this->get('session')->get('dni');
+            if ($dni == "admin") {
+                return $this->render('user/index.html.twig', [
+                    'users' => $userRepository->findAll()
+                ]);
+            }
+            else{
+                return $this->render('user/index.html.twig', [
+                    'users' => $userRepository->findBy(
+                        array('DNI' => $dni)
+                )]);
+            }
     }
 
     /**

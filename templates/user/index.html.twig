@@ -9,7 +9,9 @@
                 <th>Email</th>
                 <th>DNI</th>
                 <th>NombreCompleto</th>
+                {% if app.session.get('dni') == "admin" %}
                 <th>actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -19,11 +21,13 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.DNI }}</td>
                 <td>{{ user.nombreCompleto }}</td>
+                {% if app.session.get('dni') == "admin" %}
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
                     <br>
                 </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
@@ -32,6 +36,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {% if app.session.get('dni') == "admin" %}
     <a href="{{ path('user_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

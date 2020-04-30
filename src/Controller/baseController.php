@@ -36,9 +36,8 @@ class baseController extends AbstractController
             return $this->redirectToRoute('login');
         }
         else {
-            return $this->render('dashboard/indexPrinc.html.twig', [
-                'users' => $userRepository->findAll()
-            ]);
+            $dni = $this->get('session')->get('dni');
+            return $this->render('dashboard/indexPrinc.html.twig');
         }
     }
     
@@ -113,9 +112,14 @@ class baseController extends AbstractController
                     $nombre = $value['nombre_completo'];
                 }
 
+                foreach($result as $index => $value){
+                    $dni = $value['dni'];
+                }
+
                 $session = $request->getSession();
                 $session->start();
                 $session->set('nombre', $nombre);
+                $session->set('dni', $dni);
                 return $this->redirectToRoute('cuenta');
             }
         }
