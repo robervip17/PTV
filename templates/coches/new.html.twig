@@ -1,9 +1,9 @@
 {% extends "dashboard/layout.html.twig" %}
 {% block contenido %}
 {% block body %}
-    <h1>Create new Coches</h1>
+    <h1>Crear un nuevo coche</h1>
 
     {{ include('coches/_form.html.twig') }}
 
-    <a href="{{ path('coches_index') }}">back to list</a>
+    <a href="{{ path('coches_index') }}" class="btn btn-dark" style="margin-left:3%;">Volver a la lista</a>
 {% endblock %}

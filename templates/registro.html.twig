@@ -10,10 +10,10 @@
 		<article class="row">
 			<div class="col-6 justify-content-center offset-3" id="cardG">
 				<div class="card card-4">
-					<h4 style="color:white;">
+					<h4 id="enunciado">
 						<b>Registro</b>
 					</h4>
-					<p style="color:#d9534f;" id="errorCredenciales"></p>
+					<p style="color:#d9534f; text-align:center" id="errorCredenciales"></p>
 					{{form_start(form, {'attr':{'class':"col-8 offset-2", "action":""}})}}
 					<label for="nombreCompleto">Tu nombre completo (requerido)</label><br>
 					{{form_widget(form.nombreCompleto, {'attr':{'class':'form-control', 'placeholder':'Nombre', 'id':'nombre', 'required':''}})}}
@@ -24,11 +24,11 @@
 					<br>
 					<label for="password">Tu Contraseña (requerido)</label>
 					{{ form_widget(form.password, {'attr':{'class':'form-select', 'placeholder':'Contraseña', 'id':'password', 'required':''}}) }}
-					<label for="asunto">Asunto</label><br>
-					{{form_widget(form.send, {'attr':{'class':'btn bot', 'placeholder':'Enviar',  'type':'submit', 'onclick':'comprobar()'}})}}
+					<br>
+					{{form_widget(form.send, {'attr':{'class':'btn btn-success', 'placeholder':'Enviar',  'type':'submit', 'onclick':'comprobar()'}})}}
 					{# </form> #}
 					{{form_end(form)}}
-					<p style="color:white;" class="text-center">
+					<p style="color:white;" id="textoInicio" class="text-center">
 						Si ya tiene cuenta
 						<a href="/inicioSesion">inicie sesión aquí.</a>
 					</p>

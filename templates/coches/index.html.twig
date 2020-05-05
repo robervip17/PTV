@@ -10,7 +10,7 @@
                 <th>Modelo</th>
                 <th>Observaciones</th>
                 {% if app.session.get('dni') == "admin" %}
-                <th>actions</th>
+                <th>Acciones</th>
                 {% endif %}
             </tr>
         </thead>
@@ -23,19 +23,19 @@
                 <td>{{ coch.observaciones }}</td>
                 {% if app.session.get('dni') == "admin" %}
                 <td>
-                    <a href="{{ path('coches_show', {'id': coch.id}) }}">show</a>
-                    <a href="{{ path('coches_edit', {'id': coch.id}) }}">edit</a>
+                    <a class="btn btn-dark" href="{{ path('coches_show', {'id': coch.id}) }}">Ver</a>
+                    <a class="btn btn-dark" href="{{ path('coches_edit', {'id': coch.id}) }}">Editar</a>
                 </td>
                 {% endif %}
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">No hay cohes.</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
     {% if app.session.get('dni') == "admin" %}
-    <a href="{{ path('coches_new') }}">Create new</a>
+    <a class="btn btn-success" href="{{ path('coches_new') }}"  style="margin-left:3%;">Crear nuevo</a>
     {% endif %}
 {% endblock %}

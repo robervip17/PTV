@@ -1,10 +1,10 @@
 {% extends "dashboard/layout.html.twig" %}
 {% block contenido %}
-    <h1>Edit User</h1>
+    <h1>Editar Usuario</h1>
 
     {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('user_index') }}">back to list</a>
+    <a href="{{ path('user_index') }}" class="btn btn-dark" style="margin-left:3%;">Volver a la lista</a>
 
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

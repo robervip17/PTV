@@ -1,6 +1,6 @@
 {% extends "dashboard/layout.html.twig" %}
 {% block contenido %}
-    <h1>User</h1>
+    <h1>Usuario</h1>
 
     <table class="table">
         <tbody>
@@ -31,9 +31,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_index') }}">back to list</a>
+    <a href="{{ path('user_index') }}" class="btn btn-dark" style="margin-left:3%;">Volver a la lista</a>
 
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+    <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-dark">Editar</a>
 
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}
