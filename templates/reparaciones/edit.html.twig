@@ -1,10 +1,10 @@
 {% extends "dashboard/layout.html.twig" %}
 {% block contenido %}
-    <h1>Edit Reparaciones</h1>
+    <h1>Editar Reparaciones</h1>
 
     {{ include('reparaciones/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('reparaciones_index') }}">back to list</a>
+    <a class="btn btn-dark" style="margin-left:3%;" href="{{ path('reparaciones_index') }}">Volver a la lista</a>
 
     {{ include('reparaciones/_delete_form.html.twig') }}
 {% endblock %}

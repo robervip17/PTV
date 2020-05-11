@@ -21,6 +21,7 @@ class CochesController extends AbstractController
     public function index(CochesRepository $cochesRepository): Response
     {
         $dni = $this->get('session')->get('dni');
+        $id = $this->get('session')->get('id');
             if ($dni == "admin") {
                 return $this->render('coches/index.html.twig', [
                     'coches' => $cochesRepository->findAll()
@@ -29,7 +30,7 @@ class CochesController extends AbstractController
             else{
                 return $this->render('coches/index.html.twig', [
                     'coches' => $cochesRepository->findBy(
-                        array('DNI' => $dni)
+                        array('id_user' => $id)
                 )]);
     }
 }

@@ -211,4 +211,7 @@ body {
       pointer-events: none;
     }
   }
-  
+  #botonSalir{
+    margin-top: 110%;
+    margin-left: 6%;
+  }

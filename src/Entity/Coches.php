@@ -34,14 +34,14 @@ class Coches
     private $observaciones;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Reparaciones", mappedBy="coche")
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $id_user;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $matricula;
-
-    public function __construct()
-    {
-        $this->matricula = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -84,33 +84,26 @@ class Coches
         return $this;
     }
 
-    /**
-     * @return Collection|reparaciones[]
-     */
-    public function getMatricula(): Collection
+    public function getIdUser(): ?string
     {
-        return $this->matricula;
+        return $this->id_user;
     }
 
-    public function addMatricula(reparaciones $matricula): self
+    public function setIdUser(?string $id_user): self
     {
-        if (!$this->matricula->contains($matricula)) {
-            $this->matricula[] = $matricula;
-            $matricula->setCoche($this);
-        }
+        $this->id_user = $id_user;
 
         return $this;
     }
 
-    public function removeMatricula(reparaciones $matricula): self
+    public function getMatricula(): ?string
     {
-        if ($this->matricula->contains($matricula)) {
-            $this->matricula->removeElement($matricula);
-            // set the owning side to null (unless already changed)
-            if ($matricula->getCoche() === $this) {
-                $matricula->setCoche(null);
-            }
-        }
+        return $this->matricula;
+    }
+
+    public function setMatricula(string $matricula): self
+    {
+        $this->matricula = $matricula;
 
         return $this;
     }

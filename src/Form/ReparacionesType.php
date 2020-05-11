@@ -15,7 +15,6 @@ class ReparacionesType extends AbstractType
             ->add('tipoReparacion')
             ->add('realizacion')
             ->add('observaciones')
-            ->add('coche')
         ;
     }
 

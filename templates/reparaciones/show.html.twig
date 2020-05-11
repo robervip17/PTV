@@ -1,6 +1,6 @@
 {% extends "dashboard/layout.html.twig" %}
 {% block contenido %}
-    <h1>Reparaciones</h1>
+    <h1>Reparacion</h1>
 
     <table class="table">
         <tbody>
@@ -23,9 +23,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('reparaciones_index') }}">back to list</a>
+    <a class="btn btn-dark" style="margin-left:3%;" href="{{ path('reparaciones_index') }}">Volver a la lista</a>
 
-    <a href="{{ path('reparaciones_edit', {'id': reparacione.id}) }}">edit</a>
+    <a class="btn btn-dark" href="{{ path('reparaciones_edit', {'id': reparacione.id}) }}">Editar</a>
 
     {{ include('reparaciones/_delete_form.html.twig') }}
 {% endblock %}

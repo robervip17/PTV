@@ -100,6 +100,7 @@ class baseController extends AbstractController
             }
             else {
                 echo 'Si que estaaaaa!';
+                //Buscamos en la tabla User
                 $em = $this->getDoctrine()->getManager();
 
                 $RAW_QUERY = "SELECT * FROM User where User.dni = '".$dni."';";
@@ -116,10 +117,16 @@ class baseController extends AbstractController
                     $dni = $value['dni'];
                 }
 
+                foreach($result as $index => $value){
+                    $id = $value['id'];
+                }
+               
                 $session = $request->getSession();
                 $session->start();
                 $session->set('nombre', $nombre);
                 $session->set('dni', $dni);
+                $session->set('id', $id);
+                
                 return $this->redirectToRoute('cuenta');
             }
         }

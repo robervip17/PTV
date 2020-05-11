@@ -1,6 +1,6 @@
 {% extends "dashboard/layout.html.twig" %}
 {% block contenido %}
-    <h1>Reparaciones index</h1>
+    <h1>Reparaciones</h1>
 
     <table class="table">
         <thead>
@@ -10,7 +10,7 @@
                 <th>Realizacion</th>
                 <th>Observaciones</th>
                 {% if app.session.get('dni') == "admin" %}
-                <th>actions</th>
+                <th>Acciones</th>
                 {% endif %}
             </tr>
         </thead>
@@ -23,19 +23,20 @@
                 <td>{{ reparacione.observaciones }}</td>
                 {% if app.session.get('dni') == "admin" %}
                 <td>
-                    <a href="{{ path('reparaciones_show', {'id': reparacione.id}) }}">show</a>
-                    <a href="{{ path('reparaciones_edit', {'id': reparacione.id}) }}">edit</a>
+                    <a class="btn btn-dark" href="{{ path('reparaciones_show', {'id': reparacione.id}) }}">Ver</a>
+                    <a class="btn btn-dark" href="{{ path('reparaciones_edit', {'id': reparacione.id}) }}">Editar</a>
                 </td>
                 {% endif %}
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">No hay ninguna reparacion registrada.</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <a class="btn btn-danger" href="{{ path('coches_index') }}"  style="margin-left:3%;">Volver a lista de coches</a>
     {% if app.session.get('dni') == "admin" %}
-    <a href="{{ path('reparaciones_new') }}">Create new</a>
+    <a class="btn btn-success" style="margin-left:3%;" href="{{ path('reparaciones_new') }}">Crear nueva</a>
     {% endif %}
 {% endblock %}

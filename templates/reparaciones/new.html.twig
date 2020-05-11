@@ -1,8 +1,8 @@
 {% extends "dashboard/layout.html.twig" %}
 {% block contenido %}
-    <h1>Create new Reparaciones</h1>
+    <h1>Crear nueva reparacion</h1>
 
     {{ include('reparaciones/_form.html.twig') }}
 
-    <a href="{{ path('reparaciones_index') }}">back to list</a>
+    <a class="btn btn-dark" href="{{ path('reparaciones_index') }}">Volver a la lista</a>
 {% endblock %}

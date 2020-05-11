@@ -22,12 +22,8 @@
 		<li tabindex="0" class="icon-dashboard">
 			<span style="color:white !important;">Coches</span>
 		</li>
-		<a class="btn" href="{{ path('reparaciones_index')}}">
-			<li tabindex="0" class="icon-settings">
-				<span style="color:white !important;">Reparaciones</span>
-			</li>
-		</a>
 	</ul>
+	<a class="btn btn-warning" href="{{ path('cuenta')}}" id="botonSalir">Salir del panel de control</a>
 </nav>
 <main>
 	{% block contenido %}{% endblock %}

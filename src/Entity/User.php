@@ -46,13 +46,13 @@ class User implements UserInterface
     private $nombreCompleto;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Coches")
+     * @ORM\OneToMany(targetEntity="App\Entity\Coches", mappedBy="coches")
      */
-    private $coches;
+    private $coche;
 
     public function __construct()
     {
-        $this->coches = new ArrayCollection();
+        $this->coche = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -156,30 +156,5 @@ class User implements UserInterface
 
         return $this;
     }
-
-    /**
-     * @return Collection|coches[]
-     */
-    public function getCoches(): Collection
-    {
-        return $this->coches;
-    }
-
-    public function addCoch(coches $coch): self
-    {
-        if (!$this->coches->contains($coch)) {
-            $this->coches[] = $coch;
-        }
-
-        return $this;
-    }
-
-    public function removeCoch(coches $coch): self
-    {
-        if ($this->coches->contains($coch)) {
-            $this->coches->removeElement($coch);
-        }
-
-        return $this;
-    }
+    
 }

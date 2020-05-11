@@ -36,6 +36,11 @@ class Reparaciones
      */
     private $coche;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $id_user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +90,18 @@ class Reparaciones
     public function setCoche(?Coches $coche): self
     {
         $this->coche = $coche;
+
+        return $this;
+    }
+
+    public function getIdUser(): ?string
+    {
+        return $this->id_user;
+    }
+
+    public function setIdUser(?string $id_user): self
+    {
+        $this->id_user = $id_user;
 
         return $this;
     }

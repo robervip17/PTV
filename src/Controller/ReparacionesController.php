@@ -20,11 +20,20 @@ class ReparacionesController extends AbstractController
      */
     public function index(ReparacionesRepository $reparacionesRepository): Response
     {
-        return $this->render('reparaciones/index.html.twig', [
-            'reparaciones' => $reparacionesRepository->findAll(),
-        ]);
+        $dni = $this->get('session')->get('dni');
+        $id = $this->get('session')->get('id');
+            if ($dni == "admin") {
+                return $this->render('reparaciones/index.html.twig', [
+                    'reparaciones' => $reparacionesRepository->findAll()
+                ]);
+            }
+            else{
+                return $this->render('reparaciones/index.html.twig', [
+                    'reparaciones' => $reparacionesRepository->findBy(
+                        array('coche' => $_GET['id'])
+            )]);
     }
-
+}
     /**
      * @Route("/new", name="reparaciones_new", methods={"GET","POST"})
      */
