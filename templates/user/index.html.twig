@@ -5,7 +5,9 @@
     <table class="table">
         <thead>
             <tr>
+                {% if app.session.get('dni') == "admin" %}
                 <th>Id</th>
+                {% endif %}
                 <th>Email</th>
                 <th>DNI</th>
                 <th>Nombre completo</th>
@@ -17,7 +19,9 @@
         <tbody>
         {% for user in users %}
             <tr>
+                {% if app.session.get('dni') == "admin" %}
                 <td>{{ user.id }}</td>
+                {% endif %}
                 <td>{{ user.email }}</td>
                 <td>{{ user.DNI }}</td>
                 <td>{{ user.nombreCompleto }}</td>

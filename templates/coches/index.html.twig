@@ -5,7 +5,9 @@
     <table class="table">
         <thead>
             <tr>
+                {% if app.session.get('dni') == "admin" %}
                 <th>Id</th>
+                {% endif %}
                 <th>Marca</th>
                 <th>Modelo</th>
                 <th>Observaciones</th>
@@ -18,7 +20,9 @@
         <tbody>
         {% for coch in coches %}
             <tr>
+                {% if app.session.get('dni') == "admin" %}  
                 <td>{{ coch.id }}</td>
+                {% endif %}
                 <td>{{ coch.marca }}</td>
                 <td>{{ coch.modelo }}</td>
                 <td>{{ coch.observaciones }}</td>

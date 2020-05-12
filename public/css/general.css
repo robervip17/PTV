@@ -38,3 +38,17 @@ iframe{
     line-height: 1;
     border: none;
 }
+
+.Idioma{
+    border: solid 2px Goldenrod ;
+    border-radius:25px;
+	background-color:Peru; 
+	float: left; 
+	margin: 5px; 
+    box-shadow:5px 5px 10px 2.5px;
+}
+
+.Idioma:hover{
+    background-color:BurlyWood; 
+    box-shadow:5px 5px 10px 5px grey;
+}
