@@ -41,6 +41,11 @@ class Reparaciones
      */
     private $id_user;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $fecha;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +107,18 @@ class Reparaciones
     public function setIdUser(?string $id_user): self
     {
         $this->id_user = $id_user;
+
+        return $this;
+    }
+
+    public function getFecha(): ?\DateTimeInterface
+    {
+        return $this->fecha;
+    }
+
+    public function setFecha(?\DateTimeInterface $fecha): self
+    {
+        $this->fecha = $fecha;
 
         return $this;
     }
