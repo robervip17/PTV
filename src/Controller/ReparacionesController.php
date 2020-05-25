@@ -24,8 +24,9 @@ class ReparacionesController extends AbstractController
         $id = $this->get('session')->get('id');
             if ($dni == "admin") {
                 return $this->render('reparaciones/index.html.twig', [
-                    'reparaciones' => $reparacionesRepository->findAll()
-                ]);
+                    'reparaciones' => $reparacionesRepository->findBy(
+                        array('coche' => $_GET['id'])
+            )]);
             }
             else{
                 return $this->render('reparaciones/index.html.twig', [
